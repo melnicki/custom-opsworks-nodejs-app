@@ -4,13 +4,18 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  template "#{deploy[:deploy_to]}/shared/config/config.json" do
-    source 'config.json.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
-    variables(
-      :deploy => deploy
-    )
-  end
+  # Let OpsWorks do this
+  # template "/etc/init/#{application}.conf" do
+  #   source 'upstart.conf.erb'
+  #   owner "root"
+  #   group "root"
+  #   mode "0755"
+  #   variables(
+  #     :application_name => application,
+  #     :deploy_to => deploy[application][:current_path],
+  #     :user => deploy[application][:user],
+  #     :group => deploy[application][:group]
+  #   )
+  # end
+
 end

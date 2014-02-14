@@ -1,0 +1,17 @@
+#/etc/init/<%= application_name %>.conf
+description "<%= application_name %> NodeJS service"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+respawn
+respawn limit 5 60
+
+setuid <%= user %>
+setgid <%= group %>
+
+script
+    NPM_BIN=$(which npm)
+    chdir <%= deploy_to %>
+    exec NODE_ENV=production $NPM_BIN start >> /dev/null 2>&1
+end script
