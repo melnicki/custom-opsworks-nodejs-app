@@ -12,7 +12,7 @@ end
 
 execute "Install node.js #{node[:nodejs_custom][:version]}" do
   cwd "/tmp"
-  command "apt-get install nodejs -y}"
+  command "apt-get install nodejs -y"
   not_if do
     local_nodejs_up_to_date
   end
