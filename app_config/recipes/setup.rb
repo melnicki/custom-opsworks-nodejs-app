@@ -9,26 +9,15 @@ execute "Add the apt repo for NodeJS" do
   end
 end
 
-execute "Install node.js #{node[nodejs][:version]}" do
-  cwd "/tmp"
-  command "apt-get install nodejs -y}"
-  not_if do
-    local_nodejs_up_to_date
-  end
-end
-
-# Let OpsWorks do this in the Layer->OS Packages config
-# package "chrpath" do
-#   action :install
+# TODO MIKE
+# execute "Install node.js #{node[nodejs][:version]}" do
+#   cwd "/tmp"
+#   command "apt-get install nodejs -y}"
+#   not_if do
+#     local_nodejs_up_to_date
+#   end
 # end
 
-# package "libssl-dev" do
-#   action :install
-# end
-
-# package "libfontconfig1-dev" do
-#   action :install
-# end
 
 directory "/usr/local/lib/phantomjs-#{node[:phantomjs][:version]}-linux-x86_64" do
   mode 00755
