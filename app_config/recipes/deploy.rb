@@ -49,4 +49,12 @@ node[:deploy].each do |application, deploy|
     )
   end
 
+  file "#{deploy[:deploy_to]}/current/config/config.json" do
+    action :delete
+  end
+
+  link "#{deploy[:deploy_to]}/current/config/config.json" do
+    to "#{deploy[:deploy_to]}/shared/config/config.json"
+  end
+
 end
