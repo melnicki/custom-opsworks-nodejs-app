@@ -15,7 +15,7 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     group deploy[:group]
     variables(
-      :config => deploy[:custom_config]
+      :config => node[:custom_config]
     )
   end
 
