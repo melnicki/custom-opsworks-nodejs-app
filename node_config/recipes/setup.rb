@@ -17,17 +17,18 @@ execute "Install node.js #{node[nodejs][:version]}" do
   end
 end
 
-package "chrpath" do
-  action :install
-end
+# Let OpsWorks do this in the Layer->OS Packages config
+# package "chrpath" do
+#   action :install
+# end
 
-package "libssl-dev" do
-  action :install
-end
+# package "libssl-dev" do
+#   action :install
+# end
 
-package "libfontconfig1-dev" do
-  action :install
-end
+# package "libfontconfig1-dev" do
+#   action :install
+# end
 
 directory "/usr/local/lib/phantomjs-#{node[:phantomjs][:version]}-linux-x86_64" do
   mode 00755
