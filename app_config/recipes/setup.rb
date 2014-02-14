@@ -18,6 +18,20 @@ execute "Install node.js #{node[:nodejs_custom][:version]}" do
   end
 end
 
+# OpsWorks expects node and npm executables to be in /usr/local/bin
+link "/usr/local/bin/node" do
+  to "/usr/bin/node"
+  not_if do
+    local_nodejs_up_to_date
+  end
+end
+
+link "/usr/local/bin/npm" do
+  to "/usr/bin/npm"
+  not_if do
+    local_nodejs_up_to_date
+  end
+end
 
 directory "/usr/local/lib/phantomjs-#{node[:phantomjs][:version]}-linux-x86_64" do
   mode 00755
@@ -50,5 +64,5 @@ link "/usr/bin/phantomjs" do
 end
 
 execute "Install casperjs" do
-  command "/usr/local/bin/npm install -g casperjs"
+  command "/usr/bin/npm install -g casperjs"
 end
