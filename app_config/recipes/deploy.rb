@@ -61,14 +61,4 @@ node[:deploy].each do |application, deploy|
     to "#{deploy[:deploy_to]}/shared/config/config.json"
   end
 
-  directory "#{deploy[:deploy_to]}/current/node_modules" do
-    action :delete
-  end
-
-  execute "npm install" do
-    cwd "#{deploy[:deploy_to]}/current"
-    command "/usr/local/bin/npm install --production"
-    notifies :restart, "service[monit]", :immediately
-  end
-
 end
