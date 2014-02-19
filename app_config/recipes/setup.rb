@@ -29,5 +29,5 @@ link "/usr/bin/phantomjs" do
 end
 
 execute "Install casperjs" do
-  command "/usr/bin/npm install -g casperjs"
+  command "/usr/local/bin/npm install -g casperjs"
 end
